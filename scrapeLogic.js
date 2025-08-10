@@ -41,8 +41,7 @@ function sendMessage(chat_id, text) {
 }
 
 const scrapeLogic = async (res) => {
-		try {
-			const browser = await puppeteer.launch({
+		const browser = await puppeteer.launch({
 			// headless: false,
 			// args: ['--start-maximized'],
 			// args: [
@@ -55,8 +54,10 @@ const scrapeLogic = async (res) => {
 				process.env.NODE_ENV === "production" 
 				? process.env.PUPPETEER_EXECUTABLE_PATH 
 				: puppeteer.executablePath(),
-		});
-		const page = await browser.newPage();
+			});
+			
+		try {
+			const page = await browser.newPage();
 		Object.prototype.page = page;
 
 		await page.goto('https://manage64.net/en');
